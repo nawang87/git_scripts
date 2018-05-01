@@ -21,20 +21,18 @@ for i in `cat $TMP_REPO_DIR_LIST | sed -e 's/.git$//'`;
 			continue
 		fi
 
-		#origin	ssh://git@10.45.1.136:7999/mc/config.git (fetch)
+		#origin	ssh://git@old.url.local:7999/mc/config.git (fetch)
 		#fetch mc from above line
 		project_tag=$( git remote -v | grep fetch | awk -F "/" '{print $4}')
 
-		#origin	ssh://git@10.45.1.136:7999/mc/config.git (fetch)
+		#origin	ssh://git@old.url.local:7999/mc/config.git (fetch)
 		#fetch config.git from above line
 		rep_git_name=$( git remote -v | grep fetch | awk -F "/" '{print $5}' | awk '{print $1}')
-
-		# if old url is 10.45.1.136
 
 		#Setting new url
 		 git remote set-url origin ssh://git@"$NEW_URL":7999/${project_tag}/${rep_git_name};
 
 		echo "New git URL:"
-		 git remote -v
+		git remote -v
 
 done
