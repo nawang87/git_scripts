@@ -6,5 +6,10 @@ pipeline {
         sleep 10
       }
     }
+    stage('review') {
+      steps {
+        build 'linux'
+      }
+    }
   }
 }
